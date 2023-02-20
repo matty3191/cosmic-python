@@ -1,24 +1,17 @@
-import pytest 
+import pytest
+
+from src import allocate, Batch, Orderline
+
+
 # When we allocate an order line to batch stock, 
 # we should decrement the batch by the amount allocated
-
 
 
 def test_decrement_orderline_from_batch():
     orderline = Orderline(10)
     batch = Batch(20)
-    allocate(orderline,batch)
-    assert batch.quantity == 10 
-
-
-
-
-
-
-
-
-
-
+    allocate(orderline, batch)
+    assert batch.qty == 10
 
 
 
@@ -59,7 +52,6 @@ def test_decrement_orderline_from_batch():
 # # 
 
 
-
 # # order line can only be allocated once
 # # happy path
 # # line is processed once with confirmation / something blocking another accidental allocation
@@ -76,14 +68,12 @@ def test_decrement_orderline_from_batch():
 # # corner - multiple parameters are at the extreme simultaneously
 
 
-
 # # after allocation of orderline batch must be decremetned accordingly
 # # happy path
 # # unhappy path
 # # common
 # # edge - extreme (max / min)
 # # corner - multiple parameters are at the extreme simultaneously
-
 
 
 # # the warehouse batch must be used before teh shipment batch
@@ -94,14 +84,12 @@ def test_decrement_orderline_from_batch():
 # # corner - multiple parameters are at the extreme simultaneously
 
 
-
 # # when the shipment batch must be used the product with the shortest eta needs to be allocated first
 # # happy path
 # # unhappy path
 # # common
 # # edge - extreme (max / min)
 # # corner - multiple parameters are at the extreme simultaneously
-
 
 
 # # happy path
