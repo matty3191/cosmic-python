@@ -1,11 +1,8 @@
-import pytest
-
 from src import allocate, Batch, Orderline
 
 
 # When we allocate an order line to batch stock, 
 # we should decrement the batch by the amount allocated
-
 
 def test_decrement_orderline_from_batch():
     orderline = Orderline(10)
