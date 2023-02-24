@@ -29,10 +29,8 @@ class TestAllocation:
         order_line = OrderLine(sku="RED-CHAIR", qty=10)
         batch = Batch(sku="RED-CHAIR", available_qty=20)
 
-        allocation_service.check_already_allocated(order_line)
+        assert batch.available_qty == 20
         allocation_service.allocate(order_line, batch, pre_allocate_check(order_line, batch))
-        allocation_service.update_allocations(order_line)
-        allocation_service.check_already_allocated(order_line)
+        assert batch.available_qty == 10
         allocation_service.allocate(order_line, batch, pre_allocate_check(order_line, batch))
-
-        assert not allocation_service.check_already_allocated
+        assert batch.available_qty == 10
